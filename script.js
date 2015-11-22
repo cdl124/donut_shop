@@ -3,12 +3,14 @@ var TopPot = function(location, minCustomers, maxCustomers, avgDonuts) {
   this.minCustomers = minCustomers;
   this.maxCustomers = maxCustomers;
   this.avgDonuts = avgDonuts;
+
   this.dailyTotal = 0;
   this.hourlyArray = [];
 
 }
 
-// Formula for generating donut numbers based on max and min customers, and average donuts sold per customer.
+// Formula for generating donut numbers based on max and min
+// customers, and average donuts sold per customer. +++++++++++++++++
 TopPot.prototype.hourlyDonutsBought = function() {
   var hourlyCustomers = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers)) + this.minCustomers;
 
@@ -34,7 +36,7 @@ TopPot.prototype.dailyDonutsBought = function() {
   this.dailyTotal = hourlyArraySummedUp;
 }
 
-// DOM manipulation here.
+// DOM manipulation here. +++++++++++++++++++++++++++++++++++++++
 TopPot.prototype.render = function() {
 
 // Appending donut shop location.
@@ -58,6 +60,9 @@ TopPot.prototype.render = function() {
   document.getElementById('donut-shop').appendChild(tr);
 }
 
+
+// End of functions, begin objects +++++++++++++++++++++++++++++++
+
 var loc1 = new TopPot('Downtown', 8, 43, 4.50);
 var loc2 = new TopPot('Capitol Hill', 4, 37, 2.00);
 var loc3 = new TopPot('South Lake Union', 9, 23, 6.33);
@@ -78,3 +83,18 @@ loc4.render();
 
 loc5.dailyDonutsBought();
 loc5.render();
+
+// User-input location data
+
+var userInput = document.getElementById('userInput');
+  console.log('Line 90!');
+userInput.addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  var newDonutShop = new TopPot(event.target.location.value, event.target.minCustomersPh.value, event.target.maxCustomersPh.value, event.target.averageDonutsPc.value);
+  console.log(newDonutShop);
+});
+
+
+newDonutShop.dailyDonutsBought;
+newDonutShop.render();
