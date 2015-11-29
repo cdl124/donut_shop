@@ -3,7 +3,17 @@
   <title>Top Pot Donuts Demand Simulation Table</title>
 </head>
 <body>
-  <h1>Top Pot Donuts Demand Simulation</h1>
+
+<canvas id='myChart' height='400' width='400'></canvas>
+
+
+
+
+
+
+
+
+  <h1 id='header'>Top Pot Donuts Demand Simulation<span id="partytime"></span></h1>
   <p id="description">This table details simulated demand at each of Top Pot's five Seattle locations. The number of customers per hour is randomized, and takes into consideration each location's minimum and maximum number of customers per hour. Then, that number is multiplied by the average number of doughnuts purchased by individual customers at the particular location. The totals at the end of each table row represent the total number of donuts sold in a given day at each location.</p>
   <table>
     <thead>
@@ -25,7 +35,7 @@
     <th>Total Donuts Sold</th>
     </tr>
     </thead>
-  <tbody id='donut-shop'>
+  <tbody id='donutShop'>
     <tr id="Downtown">
     </tr>
     <tr id="Capitol Hill">
@@ -38,19 +48,72 @@
     </tr>
   </tbody>
   </table>
-<script src="script.js"></script>
-
-<!-- Form data for entering additional locations -->
+<hr id="party" />
+<br />
+<!--Form data for entering additional locations-->
 <form id="userInput">
-    Location:<br />
-    <input type="text" name="location" /><br />
-    Minimum Customers Per Hour:<br />
-    <input type="text" name="minCustomersPh" /><br />
-    Maximum Customers Per Hour:<br />
-    <input type="text" name="maxCustomersPh" /><br />
-    Average Donuts Sold Per Customer:<br />
-    <input type="text" name="averageDonutsPc" /><br />
-    <input type="submit" value="Submit" />
-    </form>
+    <fieldset>
+        <legend>Add New Location or Modify Existing Location</legend>
+        Existing Location:<br />
+        <select name="existingLocation" id="existingLocation">
+        <option value="selectLocation">--- Make a Selection: ---
+        </select><br />
+        Or, New Location Here:<br />
+        <input type="text" name="location" /><br />
+        Minimum Customers Per Hour:<br />
+        <input type="text" name="minCustomersPh" /><br />
+        Maximum Customers Per Hour:<br />
+        <input type="text" name="maxCustomersPh" /><br />
+        Average Donuts Sold Per Customer:<br />
+        <input type="text" name="averageDonutsPc" /><br />
+        <input type="submit" value="Submit" />
+    </fieldset>
 </form>
+<script src="script.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.js'>
+</script>
+
+<script>
+  var ctx = document.getElementById("myChart").getContext("2d");
+  var data = {
+      labels: allLocations.map(function(loc) {
+        return loc.location;
+        }),
+      datasets: [
+          {
+            label: "Shops",
+            fillColor: "rgba(220,220,220,0.5)",
+            strokeColor: "rgba(220,220,220,0.8)",
+            highlightFill: "rgba(220,220,220,0.75)",
+            highlightStroke: "rgba(220,220,220,1)",
+            data: allLocations.map(function(loc) {
+                // alert(loc.dailyTotal);
+                return loc.dailyTotal;
+              })
+          }
+          // {
+          //   label: "Location 2 - Capitol Hill",
+          //   fillColor: "rgba(151,187,205,0.5)",
+          //   strokeColor: "rgba(151,187,205,0.8)",
+          //   highlightFill: "rgba(151,187,205,0.75)",
+          //   highlightStroke: "rgba(151,187,205,1)",
+          //   data: allLocations.map(function(hour) {
+          //       return hour.dailyTotal;
+          //     })
+          // }
+      ]
+  };
+  console.log(allLocations);
+  // var options = {
+  //   multiToolTip: function(data) {
+  //       return data.value + "Hello";
+  //   }
+  // };
+// var myLineChart = new Chart(ctx).Line(data);
+var myBarChart = new Chart(ctx).Bar(data, {
+    barShowStroke: false
+});
+
+
+</script>
 </body>
