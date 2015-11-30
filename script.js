@@ -6,10 +6,6 @@ var TopPot = function(location, minCustomers, maxCustomers, avgDonuts) {
 
   this.dailyTotal = 0;
   this.hourlyArray = [];
-
-  // this.getOption = [];
-  // this.getExistingObject = ;
-
 }
 
 // Formula for generating donut numbers based on max and min
@@ -28,8 +24,7 @@ TopPot.prototype.dailyDonutsBought = function() {
   for (var i = 0; i < 13; i++) {
 
     totalEachHour = this.hourlyDonutsBought();
-    this.hourlyArray.push(Math.round(totalEachHour));
-
+    this.hourlyArray[i] = (Math.round(totalEachHour));
     };
 
  // Now, we are summing all those 11 hourly donut
@@ -38,10 +33,11 @@ TopPot.prototype.dailyDonutsBought = function() {
     return a + b;
   });
   this.dailyTotal = hourlyArraySummedUp;
+
 }
 
 // DOM manipulation here. +++++++++++++++++++++++++++++++++++++++++++++++++++++
-TopPot.prototype.render = function() {
+TopPot.prototype.create = function() {
 
 // Appending donut shop location to table.
     var tr = document.createElement('tr');
@@ -54,6 +50,7 @@ TopPot.prototype.render = function() {
 
     td = document.createElement('td');
     td.innerHTML = this.hourlyArray[i];
+    td.id = this.location + i;
     tr.appendChild(td);
   }
 
@@ -70,6 +67,18 @@ TopPot.prototype.render = function() {
   getDropDown.add(addLocation);
 }
 
+TopPot.prototype.update = function() {
+
+// Update existing row of total donuts sold by the hour
+  for (var i = 0; i < this.hourlyArray.length; i++) {
+    var td = document.getElementById(this.location + i);
+    td.innerHTML = this.hourlyArray[i];
+  }
+// Update total donuts sold for the day
+var total = document.getElementById(this.location + '13');
+total.innerHTML = this.dailyTotal;
+}
+
 
 // End of functions, begin objects ++++++++++++++++++++++++++++++++++++++++++++
 
@@ -83,13 +92,13 @@ var allLocations = [loc1, loc2, loc3, loc4, loc5];
 
 allLocations.forEach(function(location) {
   location.dailyDonutsBought();
-  location.render();
+  location.create();
 
 })
 
-// Easter egg event listeners! ************************************************
+//  EASTER EGG event listeners! ************************************************
 
-// Click on the heading, get gif animations to right ******
+// Click on the heading, get gif animations to right!
 var partytime = document.getElementById('header');
 
 partytime.addEventListener('click', function() {
@@ -97,24 +106,27 @@ partytime.addEventListener('click', function() {
   span.innerHTML = "<img src='images/cannon.gif' /><img src='images/noisemaker.gif' />"
 }, false);
 
-// Click on the page break below table, get 15 instances ******
+// Click on the page break below table, get 20 instances ******
 // of confetti gif, and one instance of cannon gif.
-var tableParty = document.getElementById('party');
+var pageBreakParty = document.getElementById('party');
 
-tableParty.addEventListener('click', function() {
-  for (var i = 0; i < 15; i++) {
-    party.innerHTML = "<img height='50' src='images/confetti.gif' />";
+function confetti() {
+  party.innerHTML += "<img height='60' src='images/confetti.gif' />";
+}
+
+pageBreakParty.addEventListener('click', function() {
+  for (var i = 0; i < 20; i++) {
+    confetti();
   };
-  party.innerHTML +="<img height='50' src='images/cannon.gif' />";
+  party.innerHTML +="<img height='60' src='images/cannon.gif' />";
 
 }, false);
-
-// END EASTER EGGS
 
 // User input event listener ++++++++++++++++++++++++++++++++++++++++++++++++++
 
 var userInput = document.getElementById('userInput');
 
+// Click Submit button event listener
 userInput.addEventListener('submit', function(event) {
   event.preventDefault();
 
@@ -122,48 +134,49 @@ userInput.addEventListener('submit', function(event) {
 
   // First, error-checking ****************************************************
   if (getSelect.value == "selectLocation" && event.target.location.value == '') {
+    // If BOTH fields are NULL ****
       alert("D'OH! You didn't enter a location. Try again!");
     }
 
   else if (getSelect.value !== "selectLocation" && event.target.location.value !== '') {
+    // If BOTH fields have input from user ****
       alert("Can't create a new shop AND update an existing one! Try again.");
     }
 
   else {
 
-    if (getSelect.value !== "selectLocation") { // User updates existing location. *
+    if (getSelect.value !== "selectLocation") { // User updates existing location
 
         var getSelect = document.getElementById("existingLocation");
         var getOption = getSelect.options[getSelect.selectedIndex].text;
+        // Gets the text from the drop-down option that was selected.
+
+        // Now checking for TopPot objects whose location property value is
+        // equal to the text saved within getOption variable, above.
 
         var getExistingObject;
         for(var i = 0; i < allLocations.length; i++) {
            var checkObj = allLocations[i];
            if(checkObj.location == getOption) {
              getExistingObject = checkObj;
-             delete checkObj;
-             // break;
+             break;
            }
         }
 
-        function deleteRow() {
-          var row = document.getElementById(getExistingObject.location);
-          row.parentNode.removeChild(row);
-        }
-
-        var existingDonutShop = new TopPot(getOption, event.target.minCustomersPh.value, event.target.maxCustomersPh.value, event.target.averageDonutsPc.value);
+        var existingDonutShop = getExistingObject;
+        existingDonutShop.minCustomers = event.target.minCustomersPh.value;
+        existingDonutShop.maxCustomers = event.target.maxCustomersPh.value;
+        existingDonutShop.avgDonuts = event.target.averageDonutsPc.value;
 
 
         existingDonutShop.dailyDonutsBought();
-        existingDonutShop.render();
+        existingDonutShop.update();
 
       } else { // User inputs new location and data ***************************
         var newDonutShop = new TopPot(event.target.location.value, event.target.minCustomersPh.value, event.target.maxCustomersPh.value, event.target.averageDonutsPc.value);
 
         newDonutShop.dailyDonutsBought();
-        newDonutShop.render();
+        newDonutShop.create();
       }
   }
 }, false);
-
-

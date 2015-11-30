@@ -13,3 +13,8 @@ http://stackoverflow.com/questions/1085801/get-selected-value-in-dropdown-list-u
 Where I was reminded that the filter() method can help me get an existing object with a specific property value:
 http://stackoverflow.com/questions/13964155/get-javascript-object-from-array-of-objects-by-value-or-property
 
+How to repeat the same image multiple times (for an easter egg in script.js):
+http://www.kirupa.com/html5/loops_in_javascript.htm
+
+Where I learned the BIG difference between "push"ing to an array, and assigning a value to each array index (which cleared up a very, very persistent bug...):
+Stuart (my fiance)

@@ -36,16 +36,6 @@
     </tr>
     </thead>
   <tbody id='donutShop'>
-    <tr id="Downtown">
-    </tr>
-    <tr id="Capitol Hill">
-    </tr>
-    <tr id="South Lake Union">
-    </tr>
-    <tr id="Wedgewood">
-    </tr>
-    <tr id="Ballard">
-    </tr>
   </tbody>
   </table>
 <hr id="party" />
@@ -61,11 +51,11 @@
         Or, New Location Here:<br />
         <input type="text" name="location" /><br />
         Minimum Customers Per Hour:<br />
-        <input type="text" name="minCustomersPh" /><br />
+        <input type="text" name="minCustomersPh" id="minCustomersPh" /><br />
         Maximum Customers Per Hour:<br />
-        <input type="text" name="maxCustomersPh" /><br />
+        <input type="text" name="maxCustomersPh" id="maxCustomersPh" /><br />
         Average Donuts Sold Per Customer:<br />
-        <input type="text" name="averageDonutsPc" /><br />
+        <input type="text" name="averageDonutsPc" id="averageDonutsPc" /><br />
         <input type="submit" value="Submit" />
     </fieldset>
 </form>
@@ -103,7 +93,7 @@
           // }
       ]
   };
-  console.log(allLocations);
+  // console.log(allLocations);
   // var options = {
   //   multiToolTip: function(data) {
   //       return data.value + "Hello";
