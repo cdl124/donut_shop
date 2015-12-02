@@ -18,3 +18,9 @@ http://www.kirupa.com/html5/loops_in_javascript.htm
 
 Where I learned the BIG difference between "push"ing to an array, and assigning a value to each array index (which cleared up a very, very persistent bug...):
 Stuart (my fiance)
+
+Inspiration for donut shop webpage layout colors:
+https://dribbble.com/shots/2379206--Pan-evo-dairy
+
+The color theme I adopted:
+https://color.adobe.com/Kayak-color-theme-472760/
