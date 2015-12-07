@@ -1,0 +1,145 @@
+/* FONTS */
+p {
+  font-family: 'Varela', sans-serif;
+  font-size: 14px; }
+h1 {
+  font-family: 'Abril Fatface', serif; }
+.subheader {
+  font-family: 'Pacifico', cursive; }
+
+/* Document alignment */
+
+body {
+  max-width: 80%;
+  margin: 0 auto;
+  margin-top: 8em auto 0em auto;
+  margin-bottom: 2em;
+  color: #222;
+  background-color: #E6D4A7; }
+
+header {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  position: fixed; /* Freeze-frames at top of page */
+  max-width: 100%;
+  width: 80%;
+  height: 200px;
+  top: 2em;
+  background-color: #A5BDC9;
+  border: 1px solid #000;
+  vertical-align: middle; }
+
+#header {
+  margin: auto;
+  font-size: 48px;
+  text-align: center; }
+
+h3 {
+  font-size: 24px; }
+
+.logo {
+  width: 200px;
+  margin-left: 2em; }
+
+main {
+  position: relative;
+  margin-top: 16em;
+  min-height: 25em; }
+
+.container {
+  position: relative;
+  overflow: hidden; }
+
+.leftside {
+  text-align: center;
+  vertical-align: top;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 35%;
+  margin-right: 2em; }
+
+canvas {
+  width: 300px;
+  margin-top: 6em; }
+
+.rightside {
+  width: 600px;
+  vertical-align: top;
+  position: relative;
+  display: flex;
+  flex-direction: column; }
+
+.leftside, .rightside {
+  display: inline-block; }
+
+.description {
+  padding: 1em;
+  width: 750px; }
+
+table {
+  width: 600px;
+  padding: 1em; }
+th,
+td {
+  padding: 2px 4px;
+  text-align: left;
+  border-bottom: 1px solid #5D917D;
+  font-family: 'Varela', sans-serif;
+  font-size: 14px; }
+
+select {
+  height: 34px;
+  width: 180px;
+  padding: 6px 10px; /* The 6px vertically centers text on FF, ignored by Webkit */
+  background-color: #fff;
+  border: 1px solid #D1D1D1;
+  border-radius: 4px;
+  box-shadow: none;
+  box-sizing: border-box; }
+
+input[type="text"] {
+  width: 40px; }
+
+input.location {
+  width: 150px; }
+
+label,
+select,
+input {
+  display: inline!important; }
+
+input:focus,
+textarea:focus,
+select:focus {
+  border: 1px solid #33C3F0;
+  outline: 0; }
+
+input[type="submit"] {
+  color: #333;
+  border-color: #888;
+  outline: 0; }
+
+legend {
+  display: block;
+  margin-bottom: .5rem;
+  font-weight: 600;
+  font-family: 'Abril Fatface', serif; }
+
+fieldset {
+  padding: 0;
+  border-width: 0;
+  font-family: 'Varela', sans-serif;
+  font-size: 14px; }
+
+hr {
+  border-width: 0;
+  border-top: 1px solid #A8AD80; }
+
+footer {
+  display: absolute;
+  text-align: left;
+}

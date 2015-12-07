@@ -2,72 +2,89 @@
 <head>
   <link href='https://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Varela|Abril+Fatface' rel='stylesheet' type='text/css'>
-  <link href="skeleton.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+  <link href="style.css" rel="stylesheet" type="text/css">
   <title>Top Pot Donuts Demand Simulation Table</title>
 </head>
 <body>
 
-<header class="container">
+  <header>
     <img class="logo" src="images/logo.jpg" />
-    <h1 id='header'>Top Pot Doughnuts Demand Simulation<span id="partytime"></span></h1>
-</header>
+    <h1 id='header'>Top Pot Doughnuts<br />
+    <span class="subheader">Demand Simulation</span><span id="partytime"></span></h1>
 
-<main>
-  <div class='container'>
-<!-- Chart here -->
-  <canvas id='myChart' class='leftmenu' height='400' width='400'></canvas>
+  </header>
 
+  <main>
+  <div class="container">
+    <div class='leftside'>
+      <h3 class="chartheader">Doughnut Demand<br /><span class="subheader">Bar Graph</span></h3>
+    <!-- Chart here -->
+      <canvas id='myChart' class='leftmenu' height='400' width='400'></canvas>
+    </div>
 
+  <div class="rightside">
+    <div class="description">
+      <p>This table details simulated demand at each of Top Pot's five Seattle locations. The number of customers per hour is randomized, and takes into consideration each location's minimum and maximum number of customers per hour. Then, that number is multiplied by the average number of doughnuts purchased by individual customers at the particular location. The totals at the end of each table row represent the total number of donuts sold in a given day at each location.</p>
+    </div>
 
-  <p id="description">This table details simulated demand at each of Top Pot's five Seattle locations. The number of customers per hour is randomized, and takes into consideration each location's minimum and maximum number of customers per hour. Then, that number is multiplied by the average number of doughnuts purchased by individual customers at the particular location. The totals at the end of each table row represent the total number of donuts sold in a given day at each location.</p>
+    <table>
+        <thead>
+          <tr>
+            <th>Top Pot Location</th>
+            <th>7:00 AM</th>
+            <th>8:00 AM</th>
+            <th>9:00 AM</th>
+            <th>10:00 AM</th>
+            <th>11:00 AM</th>
+            <th>12:00 PM</th>
+            <th>1:00 PM</th>
+            <th>2:00 PM</th>
+            <th>3:00 PM</th>
+            <th>4:00 PM</th>
+            <th>5:00 PM</th>
+            <th>6:00 PM</th>
+            <th>7:00 PM</th>
+            <th>Total Donuts Sold</th>
+          </tr>
+          </thead>
+        <tbody id='donutShop'>
+      <!-- script.js will append tr, td here -->
+        </tbody>
+        </table>
+
+      <hr id="party" />
+      <br />
+     <!--Form data for entering additional locations-->
+      <form id="userInput">
+        <fieldset>
+
+          <legend>Add New Location or Modify Existing Location</legend>
+            <label for="existingLocation">Existing Location:</label>
+          <select name="existingLocation" id="existingLocation">
+          <option value="selectLocation">--- Make a Selection: ---</option>
+            </select>
+            <label for="newLocation">OR New Location:</label>
+          <input type="text" class="location" name="location" />
+          <br />
+            <label for="minCustomers">Minimum Customers Per Hour:</label>
+          <input type="text" name="minCustomersPh" id="minCustomersPh" />
+            <label for="maxCustomers">Maximum Customers Per Hour:</label>
+          <input type="text" name="maxCustomersPh" id="maxCustomersPh" />
+          <br />
+            <label for="avgDonuts">Average Donuts Sold Per Customer:</label>
+          <input type="text" name="averageDonutsPc" id="averageDonutsPc" />
+          <input type="submit" value="Submit" />
+
+        </fieldset>
+      </form>
+    </div>
   </div>
-  <div class='container'>
-  <table>
-    <thead>
-    <tr>
-    <th>Top Pot Location</th>
-    <th>7:00 AM</th>
-    <th>8:00 AM</th>
-    <th>9:00 AM</th>
-    <th>10:00 AM</th>
-    <th>11:00 AM</th>
-    <th>12:00 PM</th>
-    <th>1:00 PM</th>
-    <th>2:00 PM</th>
-    <th>3:00 PM</th>
-    <th>4:00 PM</th>
-    <th>5:00 PM</th>
-    <th>6:00 PM</th>
-    <th>7:00 PM</th>
-    <th>Total Donuts Sold</th>
-    </tr>
-    </thead>
-  <tbody id='donutShop'>
-  </tbody>
-  </table>
-<hr id="party" />
-<br />
-<!--Form data for entering additional locations-->
-<form id="userInput">
-    <fieldset>
-        <legend>Add New Location or Modify Existing Location</legend>
-        Existing Location:<br />
-        <select name="existingLocation" id="existingLocation">
-        <option value="selectLocation">--- Make a Selection: ---</option>
-        </select><br />
-        Or, New Location Here:<br />
-        <input type="text" name="location" /><br />
-        Minimum Customers Per Hour:<br />
-        <input type="text" name="minCustomersPh" id="minCustomersPh" /><br />
-        Maximum Customers Per Hour:<br />
-        <input type="text" name="maxCustomersPh" id="maxCustomersPh" /><br />
-        Average Donuts Sold Per Customer:<br />
-        <input type="text" name="averageDonutsPc" id="averageDonutsPc" /><br />
-        <input type="submit" value="Submit" />
-    </fieldset>
-</form>
-</div>
 </main>
+
+<footer>
+  <p>Page by Cortney Lane 2015</p>
+</footer>
 
 <!-- JAVASCRIPT STUFF -->
 <script src="script.js"></script>
